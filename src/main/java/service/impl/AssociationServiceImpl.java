@@ -16,4 +16,14 @@ public class AssociationServiceImpl implements IAssociationService {
     public List<Association> listAssociations() {
         return associationMapper.ListAssociation();
     }
+
+    @Override
+    public List<Association> listAssociationByName(String name) {
+        return associationMapper.ListAssociationByName(name);
+    }
+
+    @Override
+    public List<Association> ListAssociationByUserName(String name) {
+        return associationMapper.ListAssociationByUserName(name);
+    }
 }
