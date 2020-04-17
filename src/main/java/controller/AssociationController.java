@@ -63,4 +63,19 @@ public class AssociationController {
         }
         return resultHandler;
     }
+
+
+    @RequestMapping("userexit")
+    @ResponseBody
+    public ResultHandler deleteMember(@RequestParam("uid")Long uid,@RequestParam("aid")Integer aid) {
+        ResultHandler resultHandler=new ResultHandler();
+        iAssociationService.deletemember(uid,aid);
+        List<Association> associtionsList=iAssociationService.ListAssociationByUserName(String.valueOf(uid));
+        if(associtionsList.size()>0&&associtionsList!=null){
+            resultHandler.setCode(200);
+            resultHandler.setMsg("删除成功");
+            resultHandler.setData(associtionsList);
+        }
+        return resultHandler;
+    }
 }

@@ -26,4 +26,11 @@ public class AssociationServiceImpl implements IAssociationService {
     public List<Association> ListAssociationByUserName(String name) {
         return associationMapper.ListAssociationByUserName(name);
     }
+
+    @Override
+    public void deletemember(Long uid, Integer aid) {
+        associationMapper.delete(uid,aid);
+    }
+
+
 }

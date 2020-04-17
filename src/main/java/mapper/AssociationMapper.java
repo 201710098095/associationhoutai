@@ -45,7 +45,7 @@ public interface AssociationMapper {
             "  `association`.`association` \n" +
             "WHERE `name`=#{name}\n" +
             "LIMIT 0, 1000 ;")
-    public List<Association> ListAssociationByName(@Param("name")String name);
+    public List<Association> ListAssociationByName(@Param("name") String name);
 
     @Select("SELECT \n" +
             " DISTINCT `uid`,\n" +
@@ -54,7 +54,12 @@ public interface AssociationMapper {
             "  `association`.`sa` ,`association`.`association`\n" +
             "WHERE `uid`=#{id}" +
             "LIMIT 0, 1000 ;")
-    public List<Association> ListAssociationByUserName(@Param("id")String id);
+    public List<Association> ListAssociationByUserName(@Param("id") String id);
 
-
+    @Delete("DELETE \n" +
+            "FROM\n" +
+            "  `association`.`sa` \n" +
+            "WHERE `uid` = #{uid} \n" +
+            "  AND `aid` = #{aid} ;")
+    void delete(@Param("uid")Long uid,@Param("aid") Integer aid);
 }
