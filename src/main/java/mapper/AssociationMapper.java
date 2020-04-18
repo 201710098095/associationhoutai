@@ -48,12 +48,13 @@ public interface AssociationMapper {
     public List<Association> ListAssociationByName(@Param("name") String name);
 
     @Select("SELECT \n" +
-            " DISTINCT `uid`,\n" +
-            "  `association`.`association`.`name`\n" +
-            "FROM\n" +
-            "  `association`.`sa` ,`association`.`association`\n" +
-            "WHERE `uid`=#{id}" +
-            "LIMIT 0, 1000 ;")
+            "         DISTINCT `association`.`sa`.`uid`,\n" +
+            "         `association`.`sa`.`aid`,\n" +
+            "             `association`.`association`.`name`\n" +
+            "            FROM\n" +
+            "             `association`.`sa` ,`association`.`association`\n" +
+            "            WHERE `uid`=201710098566 AND `association`.`sa`.`aid`=`association`.`association`.`id`\n" +
+            "            LIMIT 0, 1000 ;")
     public List<Association> ListAssociationByUserName(@Param("id") String id);
 
     @Delete("DELETE \n" +
