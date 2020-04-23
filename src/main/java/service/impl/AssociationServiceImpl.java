@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pojo.Association;
 import service.IAssociationService;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 @Service
 public class AssociationServiceImpl implements IAssociationService {
@@ -30,6 +31,11 @@ public class AssociationServiceImpl implements IAssociationService {
     @Override
     public void deletemember(Long uid, Integer aid) {
         associationMapper.delete(uid,aid);
+    }
+
+    @Override
+    public void addAssociation(Integer id, String name, String chargePersons, String phone, Data data, String type, String msg, String image, String activity, String recruit, String sponsor, String other) {
+        associationMapper.insert(id,name,chargePersons,phone,data,type,msg,image,activity,recruit,sponsor,other);
     }
 
 

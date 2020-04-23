@@ -1,11 +1,13 @@
 package mapper;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import pojo.Association;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Repository
@@ -63,4 +65,35 @@ public interface AssociationMapper {
             "WHERE `uid` = #{uid} \n" +
             "  AND `aid` = #{aid} ;")
     void delete(@Param("uid")Long uid,@Param("aid") Integer aid);
+
+    @Insert("INSERT INTO `association`.`association` (\n" +
+            "  `id`,\n" +
+            "  `name`,\n" +
+            "  `chargePersons`,\n" +
+            "  `phone`,\n" +
+            "  `date`,\n" +
+            "  `type`,\n" +
+            "  `msg`,\n" +
+            "  `image`,\n" +
+            "  `activity`,\n" +
+            "  `recruit`,\n" +
+            "  `sponsor`,\n" +
+            "  `other`\n" +
+            ") \n" +
+            "VALUES\n" +
+            "  (\n" +
+            "    #{id},\n" +
+            "    #{name},\n" +
+            "    #{chargePersons},\n" +
+            "    #{phone},\n" +
+            "    #{date},\n" +
+            "    #{type},\n" +
+            "    #{msg},\n" +
+            "    #{image},\n" +
+            "    #{activity},\n" +
+            "    #{recruit},\n" +
+            "    #{sponsor},\n" +
+            "    #{other}\n" +
+            "  ) ;")
+    void insert(@Param("id")Integer id, @Param("name") String name, @Param("chargePersons") String chargePersons,@Param("phone") String phone, @Param("data") Data data,@Param("type") String type,@Param("msg") String msg,@Param("image") String image,@Param("activity") String activity,@Param("recruit") String recruit,@Param("sponsor") String sponsor,@Param("other") String other);
 }

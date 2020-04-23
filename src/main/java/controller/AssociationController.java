@@ -1,5 +1,6 @@
 package controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,6 +10,7 @@ import pojo.Association;
 import service.IAssociationService;
 import util.ResultHandler;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @RestController
@@ -78,4 +80,14 @@ public class AssociationController {
         }
         return resultHandler;
     }
+
+    @RequestMapping("insert")
+    @ResponseBody
+    public ResultHandler insert(@RequestParam("id")Integer id, @RequestParam("name") String name, @RequestParam("chargePersons") String chargePersons, @RequestParam("phone") String phone, @RequestParam("data") Data data, @RequestParam("type") String type, @RequestParam("msg") String msg, @RequestParam("image") String image, @RequestParam("activity") String activity, @RequestParam("recruit") String recruit, @RequestParam("sponsor") String sponsor, @RequestParam("other") String other){
+        ResultHandler resultHandler=new ResultHandler();
+        iAssociationService.addAssociation(id,name,chargePersons,phone,data,type,msg,image,activity,recruit,sponsor,other);
+        resultHandler.setCode(200);
+        return resultHandler;
+    }
+
 }
