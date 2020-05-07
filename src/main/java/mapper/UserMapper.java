@@ -18,6 +18,7 @@ public interface UserMapper {
 			"  `college`,\n" +
 			"  `phone`,\n" +
 			"  `professional` \n" +
+			"  `wxid` \n"+
 			"FROM\n" +
 			"  `association`.`person` \n" +
 			"LIMIT 0, 1000 ;")
@@ -29,6 +30,7 @@ public interface UserMapper {
 			"  `college`,\n" +
 			"  `phone`,\n" +
 			"  `professional` \n" +
+			"  `wxid` \n"+
 			"FROM\n" +
 			"  `association`.`person` WHERE `id` = #{uid}")
 	public List<User> ListUserByUid(@Param("uid") Long uid);
@@ -36,11 +38,22 @@ public interface UserMapper {
 	@Update("UPDATE \n" +
 			"  `association`.`person` \n" +
 			"SET\n" +
-			"  `id` = 'id',\n" +
 			"  `name` = #{name},\n" +
 			"  `college` = #{college},\n" +
 			"  `phone` = #{phone},\n" +
 			"  `professional` = #{professional} \n" +
 			"WHERE `id` = #{uid} ;")
 	public void updateUserInfo(@Param("uid") Long uid,@Param("name") String name,@Param("college") String college,@Param("phone") String phone,@Param("professional") String professional);
+
+@Select("\n" +
+		"SELECT \n" +
+		"  `association`.`person`.`name`\n" +
+		"FROM\n" +
+		"  `association`.`sa` , `association`.`association` ,`association`.`person`\n" +
+		"  WHERE `association`.`sa`.`aid`=`association`.`association`.`id` AND `association`.`person`.`id`=`association`.`sa`.`uid`\n" +
+		"  AND `association`.`association`.`name`=#{name}\n" +
+		"LIMIT 0, 1000 ;")
+	public List<User> listUserByAssoName(@Param("name")String associationName);
+
+
 }

@@ -10,4 +10,6 @@ public interface IUserService {
     public List<User> ListUserByUid(Long uid);
 
     public void updateUser( Long uid,String name, String college,String phone,String professional);
+
+    public List<User> listUserByAssoName(String associationName);
 }

@@ -1,13 +1,11 @@
 package mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import pojo.Association;
 
 import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -66,8 +64,9 @@ public interface AssociationMapper {
             "  AND `aid` = #{aid} ;")
     void delete(@Param("uid")Long uid,@Param("aid") Integer aid);
 
-    @Insert("INSERT INTO `association`.`association` (\n" +
-            "  `id`,\n" +
+    @Insert("insert into `association`.`association` (\n" +
+            "  \n" +
+
             "  `name`,\n" +
             "  `chargePersons`,\n" +
             "  `phone`,\n" +
@@ -80,9 +79,9 @@ public interface AssociationMapper {
             "  `sponsor`,\n" +
             "  `other`\n" +
             ") \n" +
-            "VALUES\n" +
+            "values\n" +
             "  (\n" +
-            "    #{id},\n" +
+            "    \n" +
             "    #{name},\n" +
             "    #{chargePersons},\n" +
             "    #{phone},\n" +
@@ -95,5 +94,27 @@ public interface AssociationMapper {
             "    #{sponsor},\n" +
             "    #{other}\n" +
             "  ) ;")
-    void insert(@Param("id")Integer id, @Param("name") String name, @Param("chargePersons") String chargePersons,@Param("phone") String phone, @Param("data") Data data,@Param("type") String type,@Param("msg") String msg,@Param("image") String image,@Param("activity") String activity,@Param("recruit") String recruit,@Param("sponsor") String sponsor,@Param("other") String other);
+    void insert(@Param("name") String name, @Param("chargePersons") String chargePersons, @Param("phone") String phone, @Param("date") String data, @Param("type") String type, @Param("msg") String msg, @Param("image") String image, @Param("activity") String activity, @Param("recruit") String recruit, @Param("sponsor") String sponsor, @Param("other") String other);
+
+
+    @Update("UPDATE \n" +
+            "  `association`.`association` \n" +
+            "SET\n" +
+            "  `name` = #{name},\n" +
+            "  `chargePersons` =#{chargePersons},\n" +
+            "  `phone` = #{phone},\n" +
+            "  `date` = #{date},\n" +
+            "  `type` = #{type},\n" +
+            "  `msg` = #{msg},\n" +
+            "  `image` = #{image},\n" +
+            "  `activity` = #{activity},\n" +
+            "  `recruit` = #{recruit},\n" +
+            "  `sponsor` = #{sponsor},\n" +
+            "  `other` = #{other} \n" +
+            "WHERE `chargePersons` = #{chargePersons} ;\n" +
+            "\n")
+    void update(@Param("name") String name, @Param("chargePersons") String chargePersons, @Param("phone") String phone, @Param("date") String data, @Param("type") String type, @Param("msg") String msg, @Param("image") String image, @Param("activity") String activity, @Param("recruit") String recruit, @Param("sponsor") String sponsor, @Param("other") String other);
 }
+
+
+

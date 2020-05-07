@@ -7,6 +7,7 @@ import pojo.Association;
 import service.IAssociationService;
 
 import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 @Service
 public class AssociationServiceImpl implements IAssociationService {
@@ -34,8 +35,13 @@ public class AssociationServiceImpl implements IAssociationService {
     }
 
     @Override
-    public void addAssociation(Integer id, String name, String chargePersons, String phone, Data data, String type, String msg, String image, String activity, String recruit, String sponsor, String other) {
-        associationMapper.insert(id,name,chargePersons,phone,data,type,msg,image,activity,recruit,sponsor,other);
+    public void addAssociation(String name, String chargePersons, String phone, String data, String type, String msg, String image, String activity, String recruit, String sponsor, String other) {
+        associationMapper.insert(name,chargePersons,phone,data,type,msg,image,activity,recruit,sponsor,other);
+    }
+
+    @Override
+    public void update(String name, String chargePersons, String phone, String data, String type, String msg, String image, String activity, String recruit, String sponsor, String other) {
+        associationMapper.update(name, chargePersons, phone, data, type, msg, image, activity, recruit, sponsor, other);
     }
 
 

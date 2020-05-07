@@ -31,5 +31,10 @@ public class UserServiceImpl implements IUserService {
         userMapper.updateUserInfo(uid,name,college,phone,professional);
     }
 
+    @Override
+    public List<User> listUserByAssoName(String associationName) {
+        return userMapper.listUserByAssoName(associationName);
+    }
+
 
 }

@@ -34,7 +34,7 @@ public class UserController {
         return resultHandler;
     }
 
-    @RequestMapping("user/updateuser")
+    @RequestMapping("updateuser")
     @ResponseBody
     public ResultHandler updateUserInfo(@RequestParam("uid") Long id, @RequestParam("name") String name, @RequestParam("college") String college, @RequestParam("phone") String phone, @RequestParam("professional") String professional) {
         ResultHandler resultHandler = new ResultHandler();
@@ -42,6 +42,22 @@ public class UserController {
         List list = userservice.ListUserByUid(id);
         resultHandler.setCode(200);
         resultHandler.setData(list);
+        return resultHandler;
+    }
+
+    @RequestMapping("associtionname")
+    @ResponseBody
+    public ResultHandler ListUserByAssocitionName(@RequestParam("name")String name) {
+        ResultHandler resultHandler = new ResultHandler();
+        List<User> userList = userservice.listUserByAssoName(name);
+        if (userList.size() > 0 && userList != null) {
+            resultHandler.setCode(200);
+            resultHandler.setMsg("获取成功");
+            resultHandler.setData(userList);
+        } else {
+            resultHandler.setCode(400);
+            resultHandler.setMsg("获取失败");
+        }
         return resultHandler;
     }
 }
