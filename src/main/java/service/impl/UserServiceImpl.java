@@ -36,5 +36,10 @@ public class UserServiceImpl implements IUserService {
         return userMapper.listUserByAssoName(associationName);
     }
 
+    @Override
+    public void deleteSa(String associationName, String memberName) {
+        userMapper.deleteSa(associationName, memberName);
+    }
+
 
 }

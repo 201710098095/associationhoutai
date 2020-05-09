@@ -60,4 +60,13 @@ public class UserController {
         }
         return resultHandler;
     }
+
+    @RequestMapping("")
+    @ResponseBody
+    public ResultHandler deleteSa(@RequestParam ("assocaitionName") String associationName,@RequestParam("memberName") String memberName){
+        ResultHandler resultHandler=new ResultHandler();
+        userservice.deleteSa(associationName, memberName);
+        resultHandler.setCode(200);
+        return resultHandler;
+    }
 }

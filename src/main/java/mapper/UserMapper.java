@@ -2,10 +2,7 @@ package mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import pojo.User;
@@ -56,4 +53,6 @@ public interface UserMapper {
 	public List<User> listUserByAssoName(@Param("name")String associationName);
 
 
+@Delete("")
+	public void deleteSa(@Param("assocaitionName") String associationName,@Param("memberName") String memberName);
 }
