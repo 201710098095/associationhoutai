@@ -53,6 +53,12 @@ public interface UserMapper {
 	public List<User> listUserByAssoName(@Param("name")String associationName);
 
 
-@Delete("")
+@Delete("DELETE \n" +
+		"FROM\n" +
+		"  `association`.`sa` USING `association`.`sa`,`association`.`association`,`association`.`person` \n" +
+		"WHERE `association`.`sa`.`aid`=`association`.`association`.`id`\n" +
+		"AND `association`.`sa`.`uid`=`association`.`person`.`id`\n" +
+		"AND `association`.`person`.`name` = #{memberName} \n" +
+		"  AND `association`.`association`.`name`=#{assocaitionName};")
 	public void deleteSa(@Param("assocaitionName") String associationName,@Param("memberName") String memberName);
 }

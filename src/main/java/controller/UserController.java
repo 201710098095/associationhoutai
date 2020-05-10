@@ -61,7 +61,7 @@ public class UserController {
         return resultHandler;
     }
 
-    @RequestMapping("")
+    @RequestMapping("deletemember")
     @ResponseBody
     public ResultHandler deleteSa(@RequestParam ("assocaitionName") String associationName,@RequestParam("memberName") String memberName){
         ResultHandler resultHandler=new ResultHandler();
