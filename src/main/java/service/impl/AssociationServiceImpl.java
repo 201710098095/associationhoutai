@@ -44,5 +44,10 @@ public class AssociationServiceImpl implements IAssociationService {
         associationMapper.update(name, chargePersons, phone, data, type, msg, image, activity, recruit, sponsor, other);
     }
 
+    @Override
+    public List<Association> ListAssociationByCharge(String chaegePresons) {
+        return associationMapper.ListAssociationByCharge(chaegePresons);
+    }
+
 
 }

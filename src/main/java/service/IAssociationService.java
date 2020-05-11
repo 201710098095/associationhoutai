@@ -14,4 +14,5 @@ public interface IAssociationService {
     public void deletemember(Long uid,Integer aid);
     public void addAssociation(String name, String chargePersons, String phone, String data, String type, String msg, String image, String activity, String recruit, String sponsor, String other);
     void update(String name, String chargePersons, String phone, String data, String type, String msg, String image, String activity, String recruit, String sponsor, String other);
+    public List<Association> ListAssociationByCharge(String chaegePresons);
 }

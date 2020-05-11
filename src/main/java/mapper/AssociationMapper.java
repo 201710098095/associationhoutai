@@ -62,7 +62,7 @@ public interface AssociationMapper {
             "  `association`.`sa` \n" +
             "WHERE `uid` = #{uid} \n" +
             "  AND `aid` = #{aid} ;")
-    void delete(@Param("uid")Long uid,@Param("aid") Integer aid);
+    void delete(@Param("uid") Long uid, @Param("aid") Integer aid);
 
     @Insert("insert into `association`.`association` (\n" +
             "  \n" +
@@ -114,6 +114,26 @@ public interface AssociationMapper {
             "WHERE `chargePersons` = #{chargePersons} ;\n" +
             "\n")
     void update(@Param("name") String name, @Param("chargePersons") String chargePersons, @Param("phone") String phone, @Param("date") String data, @Param("type") String type, @Param("msg") String msg, @Param("image") String image, @Param("activity") String activity, @Param("recruit") String recruit, @Param("sponsor") String sponsor, @Param("other") String other);
+
+    @Select("SELECT \n" +
+            "  `id`,\n" +
+            "  `name`,\n" +
+            "  `chargePersons`,\n" +
+            "  `phone`,\n" +
+            "  `date`,\n" +
+            "  `type`,\n" +
+            "  `msg`,\n" +
+            "  `image`,\n" +
+            "  `activity`,\n" +
+            "  `recruit`,\n" +
+            "  `sponsor`,\n" +
+            "  `other` \n" +
+            "FROM\n" +
+            "  `association`.`association` \n" +
+            "  WHERE `association`.`chargePersons`=#{chaegePresons}\n" +
+            "LIMIT 0, 1000 ;\n" +
+            "\n")
+    public List<Association> ListAssociationByCharge(@Param("chaegePresons") String chaegePresons);
 }
 
 

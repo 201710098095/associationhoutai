@@ -108,4 +108,20 @@ public class AssociationController {
         resultHandler.setCode(200);
         return resultHandler;
     }
+
+    @RequestMapping("ListAssociationByChargeName")
+    @ResponseBody
+    public ResultHandler ListAssociationByCharge(@RequestParam("chaegePresons")String chaegePersons) {
+        ResultHandler resultHandler=new ResultHandler();
+        List<Association> associtionsList=iAssociationService.ListAssociationByCharge(chaegePersons);
+        if(associtionsList.size()>0&&associtionsList!=null){
+            resultHandler.setCode(200);
+            resultHandler.setMsg("获取成功");
+            resultHandler.setData(associtionsList);
+        }else{
+            resultHandler.setCode(400);
+            resultHandler.setMsg("获取失败");
+        }
+        return resultHandler;
+    }
 }
