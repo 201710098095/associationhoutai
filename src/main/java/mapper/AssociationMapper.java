@@ -134,6 +134,9 @@ public interface AssociationMapper {
             "LIMIT 0, 1000 ;\n" +
             "\n")
     public List<Association> ListAssociationByCharge(@Param("chaegePresons") String chaegePresons);
+
+    @Update("")
+    void submit();
 }
 
 
