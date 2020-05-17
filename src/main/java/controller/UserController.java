@@ -69,4 +69,34 @@ public class UserController {
         resultHandler.setCode(200);
         return resultHandler;
     }
+
+    @RequestMapping("ListUserByNickname")
+    @ResponseBody
+    public ResultHandler ListUserByNickname(@RequestParam("nickname")String nickname) {
+        ResultHandler resultHandler = new ResultHandler();
+        List<User> userList = userservice.ListUserByNickname(nickname);
+        if (userList.size() > 0 && userList != null) {
+            resultHandler.setCode(200);
+            resultHandler.setMsg("获取成功");
+            resultHandler.setData(userList);
+        } else {
+            resultHandler.setCode(400);
+            resultHandler.setMsg("获取失败");
+        }
+        return resultHandler;
+    }
+
+    @RequestMapping("userjoin")
+    @ResponseBody
+    public ResultHandler insert(@RequestParam("uname") String uname,@RequestParam("aname")String aname ){
+        ResultHandler resultHandler=new ResultHandler();
+        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //Date date=null;
+        userservice.userjoin(uname, aname);
+        resultHandler.setCode(200);
+
+        return resultHandler;
+
+
+    }
 }

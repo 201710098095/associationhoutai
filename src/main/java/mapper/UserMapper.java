@@ -15,7 +15,7 @@ public interface UserMapper {
 			"  `college`,\n" +
 			"  `phone`,\n" +
 			"  `professional` \n" +
-			"  `wxid` \n"+
+			"  `nickname` \n"+
 			"FROM\n" +
 			"  `association`.`person` \n" +
 			"LIMIT 0, 1000 ;")
@@ -26,8 +26,22 @@ public interface UserMapper {
 			"  `name`,\n" +
 			"  `college`,\n" +
 			"  `phone`,\n" +
+			"  `professional`,\n" +
+			"  `nickname` \n" +
+			"FROM\n" +
+			"  `association`.`person` \n" +
+			"WHERE `association`.`person`.`nickname`= #{nickname}" +
+			"LIMIT 0, 1000 ;\n" +
+			"\n")
+	public List<User> ListUserByNickname(@Param("nickname")String nickname);
+
+	@Select("SELECT \n" +
+			"  `id`,\n" +
+			"  `name`,\n" +
+			"  `college`,\n" +
+			"  `phone`,\n" +
 			"  `professional` \n" +
-			"  `wxid` \n"+
+			"  `nickname` \n"+
 			"FROM\n" +
 			"  `association`.`person` WHERE `id` = #{uid}")
 	public List<User> ListUserByUid(@Param("uid") Long uid);
@@ -61,4 +75,17 @@ public interface UserMapper {
 		"AND `association`.`person`.`name` = #{memberName} \n" +
 		"  AND `association`.`association`.`name`=#{assocaitionName};")
 	public void deleteSa(@Param("assocaitionName") String associationName,@Param("memberName") String memberName);
+
+@Insert("INSERT INTO `association`.`sa` (`uid`, `aid`) \n" +
+		"VALUES\n" +
+		"  ((SELECT \n" +
+		"  `association`.`person`.`id`\n" +
+		"FROM\n" +
+		"  `association`.`person`\n" +
+		"  WHERE `association`.`person`.`name`=#{uname}), (SELECT \n" +
+		"  `association`.`association`.`id`\n" +
+		"FROM\n" +
+		"  `association`.`association`\n" +
+		"  WHERE `association`.`association`.`name`=#{aname})) ;")
+	public void userjoin(@Param("uname")String uname,@Param("aname")String aname);
 }

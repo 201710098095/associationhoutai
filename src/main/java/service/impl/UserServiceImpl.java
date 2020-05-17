@@ -41,5 +41,15 @@ public class UserServiceImpl implements IUserService {
         userMapper.deleteSa(associationName, memberName);
     }
 
+    @Override
+    public List<User> ListUserByNickname(String nickname) {
+        return userMapper.ListUserByNickname(nickname);
+    }
+
+    @Override
+    public void userjoin(String uname, String aname) {
+        userMapper.userjoin(uname, aname);
+    }
+
 
 }
